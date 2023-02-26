@@ -3,7 +3,8 @@
         xmlns:vm="using:progressTable.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="450" Width="850" Height="450"
+        xmlns:conv="clr-namespace:ProgressTable.Converters"
+        mc:Ignorable="d" d:DesignWidth="850" d:DesignHeight="450" Width="850" Height="450"
         x:Class="progressTable.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="progressTable">
@@ -13,60 +14,62 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+    <Window.Resources>
+        <conv:ColorConverter x:Key="colorConverter"/>
+    </Window.Resources>
     <Window.Styles>
-        <Style Selector="TextBlock.h1">
+        <Style Selector="TextBlock.heading">
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10 5 10 5"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
         </Style>
-        <Style Selector="TextBlock.h2">
+        <Style Selector="TextBlock.text">
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10 4"/>
+            <Setter Property="Margin" Value="2 4 2 4"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
         </Style>
     </Window.Styles>
     <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
         <Grid Grid.Row="0" RowDefinitions="Auto" ColumnDefinitions="3*, 2*, 2*, 2*, 2*">
-            <TextBlock Name="HeaderFIO" Classes="h1" Text="ФИО" Grid.Column="0"/>
-            <TextBlock Name="HeaderVisual" Classes="h1" Text="Визуальное&#x0a;программирование" Grid.Column="1"/>
-            <TextBlock Name="HeaderArchitecture" Classes="h1" Text="Архитектура&#x0a;ЭВМ" Grid.Column="2"/>
-            <TextBlock Name="HeaderNetworks" Classes="h1" Text="Сети&#x0a;ЭВМ" Grid.Column="3"/>
-            <TextBlock Name="HeaderAverage_Rating" Classes="h1" Text="Средний&#x0a;балл" Grid.Column="8"/>
-            
-            <Border Grid.Row="0" Grid.Column="0"  BorderBrush="Black"  BorderThickness="1" />
-            <Border Grid.Row="0" Grid.Column="1"  BorderBrush="Black"  BorderThickness="1" />
-            <Border Grid.Row="0" Grid.Column="2"  BorderBrush="Black"  BorderThickness="1" />
-            <Border Grid.Row="0" Grid.Column="3"  BorderBrush="Black"  BorderThickness="1" />
-            <Border Grid.Row="0" Grid.Column="4"  BorderBrush="Black"  BorderThickness="1" />
+            <TextBlock Name="HeaderFIO" Classes="heading" Text="ФИО" Grid.Column="0"/>
+            <TextBlock Name="HeaderVisual" Classes="heading" Text="Визуальное&#x0a;программирование" Grid.Column="1"/>
+            <TextBlock Name="HeaderArchitecture" Classes="heading" Text="Архитектура&#x0a;ЭВМ" Grid.Column="2"/>
+            <TextBlock Name="HeaderNetworks" Classes="heading" Text="Сети&#x0a;ЭВМ" Grid.Column="3"/>
+            <TextBlock Name="HeaderAverage_Rating" Classes="heading" Text="Средний&#x0a;балл" Grid.Column="8"/>
         </Grid>
         
         <ListBox Grid.Row="1" Items="{Binding Students}" SelectedIndex="{Binding Index}">
-				<ListBox.ItemTemplate>
-					<DataTemplate>
-							<Grid RowDefinitions="Auto" ColumnDefinitions="3*, 2*, 2*, 2*, 2*">
-								<TextBlock Name="StudentName" Classes="h2" Text="{Binding Name}" Grid.Column="0"/>
-                                <TextBlock Name="Visual" Classes="h2" Text="{Binding Visual}" Grid.Column="1"/>
-								<TextBlock Name="Architecture" Classes="h2" Text="{Binding Architecture}" Grid.Column="2"/>
-								<TextBlock Name="Networks" Classes="h2" Text="{Binding Networks}" Grid.Column="3"/>
-								<TextBlock Name="Average_Rating" Classes="h2" Text="{Binding Average_Rating}" Grid.Column="8"/>
-                            </Grid>
+            <ListBox.Styles>
+                <Style Selector="ListBoxItem">
+                    <Setter Property="Padding" Value="0"/>
+                </Style>
+            </ListBox.Styles>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="Auto" ColumnDefinitions="3*, 2*, 2*, 2*, 2*">
+							<TextBlock Name="StudentName" Classes="text" Text="{Binding Name}" Grid.Column="0"/>
+                            <TextBlock Background="{Binding Visual, Converter={StaticResource colorConverter}}" Name="Visual" Classes="text" Text="{Binding Visual}" Grid.Column="1"/>
+							<TextBlock Background="{Binding Architecture, Converter={StaticResource colorConverter}}" Name="Architecture" Classes="text" Text="{Binding Architecture}" Grid.Column="2"/>
+							<TextBlock Background="{Binding Networks, Converter={StaticResource colorConverter}}" Name="Networks" Classes="text" Text="{Binding Networks}" Grid.Column="3"/>
+							<TextBlock Background="{Binding Average_Rating, Converter={StaticResource colorConverter}}" Name="Average_Rating" Classes="text" Text="{Binding Average_Rating}" Grid.Column="8"/>
+                        </Grid>
 					</DataTemplate>
 				</ListBox.ItemTemplate>
         </ListBox>
         
         <Grid Name="SrGrid" Grid.Row="2" RowDefinitions="Auto" ColumnDefinitions="3*, 2*, 2*, 2*, 2*">
-            <TextBlock Classes="h2" Text="Cр. баллы" Grid.Column="0"/>
-            <TextBlock Name="VisualRating" Classes="h2" Text="{Binding VisualRating}" Grid.Column="1"/>
-            <TextBlock Name="ArchitectureRating" Classes="h2" Text="{Binding ArchitectureRating}" Grid.Column="2"/>
-            <TextBlock Name="NetworksRating" Classes="h2" Text="{Binding NetworksRating}" Grid.Column="3"/>
-            <TextBlock Name="AverageRating" Classes="h2" Text="{Binding AverageStudentRating}" Grid.Column="4"/>
+            <TextBlock Classes="heading" Text="Cр. баллы" Grid.Column="0"/>
+            <TextBlock Background="{Binding VisualRating, Converter={StaticResource colorConverter}}" Name="VisualRating" Classes="heading" Text="{Binding VisualRating}" Grid.Column="1"/>
+            <TextBlock Background="{Binding ArchitectureRating, Converter={StaticResource colorConverter}}" Name="ArchitectureRating" Classes="heading" Text="{Binding ArchitectureRating}" Grid.Column="2"/>
+            <TextBlock Background="{Binding NetworksRating, Converter={StaticResource colorConverter}}" Name="NetworksRating" Classes="heading" Text="{Binding NetworksRating}" Grid.Column="3"/>
+            <TextBlock Background="{Binding AverageStudentRating, Converter={StaticResource colorConverter}}" Name="AverageRating" Classes="heading" Text="{Binding AverageStudentRating}" Grid.Column="4"/>
         </Grid>
         
         <Grid Grid.Row="3" RowDefinitions="Auto" ColumnDefinitions="3*, 2*, 2*, 2*, 2*">
-            <TextBox Name="newStudent" Classes="h2" Grid.Column="0" Text="{Binding NewStudentName}"/>
+            <TextBox Name="newStudent" Classes="text" Grid.Column="0" Text="{Binding NewStudentName}"/>
             <ComboBox Name="NewVisualRating" Grid.Column="1" HorizontalAlignment="Stretch" SelectedIndex="{Binding NewVisualRating}">
                 <TextBlock>0</TextBlock>
                 <TextBlock>1</TextBlock>
@@ -82,7 +85,6 @@
                 <TextBlock>1</TextBlock>
                 <TextBlock>2</TextBlock>
             </ComboBox>
-            <TextBlock Grid.Column="4" Text="{Binding Index}"></TextBlock> <!-- для дебага -->
         </Grid>
         
         <Grid Grid.Row="4" RowDefinitions="Auto" ColumnDefinitions="*, *">
