@@ -13,7 +13,7 @@ namespace progressTable.ViewModels
 
         private string status = "st";
         
-        private ushort index = 5000;
+        private ushort index = 9999;
         
         private string newStudentName = "1";
         private ushort[] newStudentRating = { 0, 0, 0 };
@@ -30,7 +30,6 @@ namespace progressTable.ViewModels
             {
                 if (newStudentName.Length > 0)
                 {
-                    Status = newStudentName;
                     Student[] temp = students;
                     Array.Resize(ref temp, temp.Length + 1);
                     temp[temp.Length - 1] = new Student { Name = newStudentName, Visual = newStudentRating[0], Architecture = newStudentRating[1], Networks = newStudentRating[2] };
@@ -39,7 +38,24 @@ namespace progressTable.ViewModels
                     calcAverage(students);
                 }
             });
+            DeleteStudent = ReactiveCommand.Create(() =>
+            {
+                if (Index < students.Length)
+                {
+                    Student[] temp = students;
+                    for (int i = index; i < temp.Length - 1; i++)
+                    {
+                        temp[i] = temp[i + 1];
+                    }
+                    Array.Resize(ref temp, temp.Length - 1);
+                    Students = temp;
+                    Index = 9999;
+                    calcAverage(students);
+                }
+            });
         }
+        public ReactiveCommand<Unit, Unit> AddStudent { get; }
+        public ReactiveCommand<Unit, Unit> DeleteStudent { get; }
 
         private void restoreNewStudentData()
         {
@@ -75,7 +91,6 @@ namespace progressTable.ViewModels
             AverageStudentRating /= students.Length;
         }
         
-        public ReactiveCommand<Unit, Unit> AddStudent { get; }
         
         public Student[] Students { get => students; set => this.RaiseAndSetIfChanged(ref students, value); }
         public ushort Index{ get => index; set => this.RaiseAndSetIfChanged(ref index, value); }

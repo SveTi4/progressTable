@@ -82,12 +82,12 @@
                 <TextBlock>1</TextBlock>
                 <TextBlock>2</TextBlock>
             </ComboBox>
-            <TextBlock Grid.Column="4" Text="{Binding Status}"></TextBlock> <!-- для дебага -->
+            <TextBlock Grid.Column="4" Text="{Binding Index}"></TextBlock> <!-- для дебага -->
         </Grid>
         
         <Grid Grid.Row="4" RowDefinitions="Auto" ColumnDefinitions="*, *">
             <Button Name="AddStudentButton" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Command="{Binding AddStudent}" Content="Добавить"/>
-            <Button Name="RemoveStudentButton" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Command="{Binding set_Status}" CommandParameter="Удалить" Content="Удалить"/>
+            <Button Name="RemoveStudentButton" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Command="{Binding DeleteStudent}" Content="Удалить"/>
         </Grid>
 
         <Grid Grid.Row="5" RowDefinitions="Auto" ColumnDefinitions="*, *">
