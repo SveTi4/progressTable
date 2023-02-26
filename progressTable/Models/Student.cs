@@ -5,11 +5,6 @@
         private string _name = "";
         private float _averageRating = 0;
         private ushort[] _ratings = {0, 0, 0, 0};
-
-        public Student(string Name)
-        {
-            this._name = Name;
-        }
         
         public string Name 
         { 
@@ -40,7 +35,7 @@
                 {
                     _averageRating += rating;
                 }
-                return _averageRating /= _ratings.Length;
+                return _averageRating /= 3;
             }
         }
     }
