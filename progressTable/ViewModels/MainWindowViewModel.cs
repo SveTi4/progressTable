@@ -53,9 +53,22 @@ namespace progressTable.ViewModels
                     calcAverage(students);
                 }
             });
+            SaveData = ReactiveCommand.Create(() =>
+            {
+                Serialization<Student[]>.SaveData(students, "data.dat");
+            });
+            LoadData = ReactiveCommand.Create(() =>
+            {
+                Students = Serialization<Student[]>.LoadData("data.dat");
+                Index = (ushort)Students.Length;
+                calcAverage(students);
+            });
         }
         public ReactiveCommand<Unit, Unit> AddStudent { get; }
         public ReactiveCommand<Unit, Unit> DeleteStudent { get; }
+        public ReactiveCommand<Unit, Unit> SaveData { get; }
+        public ReactiveCommand<Unit, Unit> LoadData { get; }
+
 
         private void restoreNewStudentData()
         {
