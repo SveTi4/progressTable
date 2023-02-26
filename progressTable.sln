@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "progressTable", "progressTable\progressTable.csproj", "{45EBC724-F957-4697-8DD2-BE7869AA8BBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestsProgressTable", "UITestsProgressTable\UITestsProgressTable.csproj", "{F6CDBDA8-3FF0-40BE-B7AE-900935DDE138}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{45EBC724-F957-4697-8DD2-BE7869AA8BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45EBC724-F957-4697-8DD2-BE7869AA8BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45EBC724-F957-4697-8DD2-BE7869AA8BBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6CDBDA8-3FF0-40BE-B7AE-900935DDE138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6CDBDA8-3FF0-40BE-B7AE-900935DDE138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6CDBDA8-3FF0-40BE-B7AE-900935DDE138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6CDBDA8-3FF0-40BE-B7AE-900935DDE138}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
