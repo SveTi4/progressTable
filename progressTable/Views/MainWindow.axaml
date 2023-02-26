@@ -1,0 +1,87 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:progressTable.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="450" Width="800" Height="400"
+        x:Class="progressTable.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="progressTable">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    <Window.Styles>
+        <Style Selector="TextBlock.h1">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="TextBlock.h2">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Styles>
+    <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+        <Grid Grid.Row="0" RowDefinitions="Auto" ColumnDefinitions="3*, 2*, 2*, 2*, 1*">
+            <TextBlock Classes="h1" Text="ФИО" Grid.Column="0"/>
+            <TextBlock Classes="h1" Text="Визуальное&#x0a;программирование" Grid.Column="1"/>
+            <TextBlock Classes="h1" Text="Архитектура&#x0a;ЭВМ" Grid.Column="2"/>
+            <TextBlock Classes="h1" Text="Сети&#x0a;ЭВМ" Grid.Column="3"/>
+            <TextBlock Classes="h1" Text="Средний&#x0a;балл" Grid.Column="8"/>
+            
+            <Border Grid.Row="0" Grid.Column="0"  BorderBrush="Black"  BorderThickness="1" />
+            <Border Grid.Row="0" Grid.Column="1"  BorderBrush="Black"  BorderThickness="1" />
+            <Border Grid.Row="0" Grid.Column="2"  BorderBrush="Black"  BorderThickness="1" />
+            <Border Grid.Row="0" Grid.Column="3"  BorderBrush="Black"  BorderThickness="1" />
+            <Border Grid.Row="0" Grid.Column="4"  BorderBrush="Black"  BorderThickness="1" />
+        </Grid>
+        
+        <ListBox Grid.Row="1">
+            
+        </ListBox>
+        
+        <Grid Name="SrGrid" Grid.Row="2" RowDefinitions="Auto" ColumnDefinitions="3*, 2*, 2*, 2*, 1*">
+            <TextBlock Classes="h2" Text="Cр. баллы" Grid.Column="0"/>
+            <TextBlock Name="VisualSrText" Classes="h2" Text="1" Grid.Column="1"/>
+            <TextBlock Name="sada" Classes="h2" Text="2" Grid.Column="2"/>
+            <TextBlock Name="fasf" Classes="h2" Text="3" Grid.Column="3"/>
+            <TextBlock Name="AverageSrText" Classes="h2" Text="4" Grid.Column="4"/>
+        </Grid>
+        
+        <Grid Grid.Row="3" RowDefinitions="Auto" ColumnDefinitions="3*, 2*, 2*, 2*, 1*">
+            <TextBox Name="TextBoxName" Classes="h2" Grid.Column="0" Text="1"/>
+            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" SelectedIndex="0">
+                <TextBlock>0</TextBlock>
+                <TextBlock>1</TextBlock>
+                <TextBlock>2</TextBlock>
+            </ComboBox>
+            <ComboBox Grid.Column="2" HorizontalAlignment="Stretch" SelectedIndex="0">
+                <TextBlock>0</TextBlock>
+                <TextBlock>1</TextBlock>
+                <TextBlock>2</TextBlock>
+            </ComboBox>
+            <ComboBox Grid.Column="3" HorizontalAlignment="Stretch" SelectedIndex="0">
+                <TextBlock>0</TextBlock>
+                <TextBlock>1</TextBlock>
+                <TextBlock>2</TextBlock>
+            </ComboBox>
+        </Grid>
+        
+        <Grid Grid.Row="4" RowDefinitions="Auto" ColumnDefinitions="*, *">
+            <Button Name="AddStudentButton" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Добавить"/>
+            <Button Name="RemoveStudentButton" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Удалить"/>
+        </Grid>
+
+        <Grid Grid.Row="5" RowDefinitions="Auto" ColumnDefinitions="*, *">
+            <Button Name="SaveButton" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Сохранить"/>
+            <Button Name="LoadButton" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Загрузить"/>
+        </Grid>
+    </Grid>
+</Window>
