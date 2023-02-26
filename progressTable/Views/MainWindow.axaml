@@ -62,7 +62,7 @@
             <TextBlock Name="VisualRating" Classes="h2" Text="{Binding VisualRating}" Grid.Column="1"/>
             <TextBlock Name="ArchitectureRating" Classes="h2" Text="{Binding ArchitectureRating}" Grid.Column="2"/>
             <TextBlock Name="NetworksRating" Classes="h2" Text="{Binding NetworksRating}" Grid.Column="3"/>
-            <TextBlock Name="AverageRating" Classes="h2" Text="{Binding AverageRating}" Grid.Column="4"/>
+            <TextBlock Name="AverageRating" Classes="h2" Text="{Binding AverageStudentRating}" Grid.Column="4"/>
         </Grid>
         
         <Grid Grid.Row="3" RowDefinitions="Auto" ColumnDefinitions="3*, 2*, 2*, 2*, 1*">

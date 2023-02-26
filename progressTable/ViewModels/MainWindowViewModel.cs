@@ -36,7 +36,7 @@ namespace progressTable.ViewModels
                     temp[temp.Length - 1] = new Student { Name = newStudentName, Visual = newStudentRating[0], Architecture = newStudentRating[1], Networks = newStudentRating[2] };
                     Students = temp;
                     restoreNewStudentData();
-                    // calcAverage();
+                    calcAverage(students);
                 }
             });
         }
@@ -58,38 +58,23 @@ namespace progressTable.ViewModels
             }
         }
 
-        // private void calcAverage(Student[] students)
-        // {
-        //     
-        //     for (int i = 0; i < students.Length; i++)
-        //     {
-        //         ScoreVisualSr += students[i].Visual;
-        //         ScoreArchitectureSr += students[i].Architecture;
-        //         ScoreNetworksSr += students[i].Networks;
-        //         ScoreCalculate_MathSr += students[i].Calculate_Math;
-        //         ScorePISr += students[i].PI;
-        //         ScoreMathSr += students[i].Math;
-        //         ScoreElectricSr += students[i].Electric;
-        //         ScoreAverageSr += students[i].Average_Score;
-        //     }
-        //     ScoreVisualSr /= students.Length;
-        //     ColorVisualSr = checkColor(ScoreVisualSr);
-        //     ScoreArchitectureSr /= students.Length;
-        //     ColorArchitectureSr = checkColor(ScoreArchitectureSr);
-        //     ScoreNetworksSr /= students.Length;
-        //     ColorNetworksSr = checkColor(ScoreNetworksSr);
-        //     ScoreCalculate_MathSr /= students.Length;
-        //     ColorCalculate_MathSr = checkColor(ScoreCalculate_MathSr);
-        //     ScorePISr /= students.Length;
-        //     ColorPISr = checkColor(ScorePISr);
-        //     ScoreMathSr /= students.Length;
-        //     ColorMathSr = checkColor(ScoreMathSr);
-        //     ScoreElectricSr /= students.Length;
-        //     ColorElectricSr = checkColor(ScoreElectricSr);
-        //     ScoreAverageSr /= students.Length;
-        //     ColorAverageSr = checkColor(ScoreAverageSr);
-        // }
-        //
+        private void calcAverage(Student[] students)
+        {
+            restoreAverageRating();
+            
+            for (int i = 0; i < students.Length; i++)
+            {
+                VisualRating += students[i].Visual;
+                ArchitectureRating += students[i].Architecture;
+                NetworksRating += students[i].Networks;
+                AverageStudentRating += students[i].Average_Rating;
+            }
+            VisualRating /= students.Length;
+            ArchitectureRating /= students.Length;
+            NetworksRating /= students.Length;
+            AverageStudentRating /= students.Length;
+        }
+        
         public ReactiveCommand<Unit, Unit> AddStudent { get; }
         
         public Student[] Students { get => students; set => this.RaiseAndSetIfChanged(ref students, value); }
